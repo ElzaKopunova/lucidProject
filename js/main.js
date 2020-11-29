@@ -69,7 +69,6 @@ document.addEventListener('DOMContentLoaded', function() {
         input.parentElement.classList.remove('_error');
         input.classList.remove('_error');
     }
-
     function emailTest(input){
         return !/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,8})+$/.test(input.value);
     }
@@ -101,21 +100,49 @@ h2Title[1].classList.add('left_h2-after');
 h2Title[2].classList.add('left_h2-after');
 
 //modal-box
-const modalLink = document.querySelectorAll('.modal-link');
-const modalClose = document.querySelector('.modal__close');
+const modalLinks = document.querySelectorAll('.modal-link'); //все кнопки order now
+const modalCloseIcon = document.querySelector('.modal__close');
 const modalBtn = document.querySelector('.modal-btn');
 const modalBox = document.querySelector('.modal-box');
 
-if (modalLink.length > 0){
-    for (let i = 0; i < modalLink.length; i++){
-        modalLink[i].addEventListener('click', ((e)=>{
-            const modalName = modalLink[i].getAttribute('href').replace("#", '');
-            //вызов 
+const timeout = 500;
+
+if (modalLinks.length > 0){
+    for (let i = 0; i < modalLinks.length; i++){
+        const modalLink = modalLinks[i];
+        modalLink.addEventListener('click', ((e)=>{
+            const modalName = modalLink.getAttribute('href').replace('#', '');
+            const currentModal = document.getElementById(modalName);
+            modalOpen(currentModal);
             e.preventDefault();
         }))
     }
 }
 
-modalClose.addEventListener('click', (()=>{
-    modalBox.classList.remove('open');
-}))
+const closeModals = document.querySelectorAll('.close-modal');
+if (closeModals.length > 0){
+    for (let i = 0; i < closeModals.length; i++){
+        const closeModalIcon = closeModals[i];
+        closeModalIcon.addEventListener('click', (e)=>{
+            modalClose(closeModalIcon.closest('.modal-box'));
+            e.preventDefault();
+        })  
+    }
+}
+
+function modalOpen (current){
+    current.classList.add('open');
+    current.addEventListener('click', function(e){
+        if (!e.target.closest('.modal__content')) {
+            modalClose(e.target.closest('.modal-box'))
+        }
+    })
+}
+
+function modalClose(current){
+    current.classList.remove('open');
+}
+
+// modalClose.addEventListener('click', (()=>{
+//     modalBox.classList.remove('open');
+// }))

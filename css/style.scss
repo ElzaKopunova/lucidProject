@@ -689,10 +689,10 @@ hr{
 .modal-box.open{
     opacity: 1;
     visibility: visible;
-}
-.modal-box.open.modal__content{
-    transform: perspective(600px) translate(0px, 0%) rotateX(0deg);
-    opacity: 1;
+    &,.modal__content{
+        transform: perspective(600px) translate(0px, 0%) rotateX(0deg);
+        opacity: 1;
+    }
 }
 .modal__container{
     min-height: 100%;
@@ -710,6 +710,9 @@ hr{
     flex-direction: column;
     border-radius: 5px;
     position: relative;
+    transition: all 0.5s ease 0s;
+    opacity: 0;
+    transform: translate(0px, -100%);
 }
 .modal__close{
     position: absolute;
@@ -726,8 +729,7 @@ hr{
     color: rgb(73, 73, 73);
     padding-bottom: 30px;
 }
-.modal__form{
-}
+
 .modal__input{
     height: 40px;
     padding: 10px 17px;

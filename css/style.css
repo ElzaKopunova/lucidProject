@@ -877,7 +877,7 @@ hr {
   visibility: visible;
 }
 
-.modal-box.open.modal__content {
+.modal-box.open, .modal-box.open .modal__content {
   -webkit-transform: perspective(600px) translate(0px, 0%) rotateX(0deg);
           transform: perspective(600px) translate(0px, 0%) rotateX(0deg);
   opacity: 1;
@@ -911,6 +911,11 @@ hr {
           flex-direction: column;
   border-radius: 5px;
   position: relative;
+  -webkit-transition: all 0.5s ease 0s;
+  transition: all 0.5s ease 0s;
+  opacity: 0;
+  -webkit-transform: translate(0px, -100%);
+          transform: translate(0px, -100%);
 }
 
 .modal__close {
