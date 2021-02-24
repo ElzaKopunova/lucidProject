@@ -105,7 +105,7 @@ const modalCloseIcon = document.querySelector('.modal__close');
 const modalBtn = document.querySelector('.modal-btn');
 const modalBox = document.querySelector('.modal-box');
 
-const timeout = 500;
+const timeOut = 500;
 
 if (modalLinks.length > 0){
     for (let i = 0; i < modalLinks.length; i++){
@@ -142,7 +142,3 @@ function modalOpen (current){
 function modalClose(current){
     current.classList.remove('open');
 }
-
-// modalClose.addEventListener('click', (()=>{
-//     modalBox.classList.remove('open');
-// }))
